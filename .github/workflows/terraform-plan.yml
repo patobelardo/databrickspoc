@@ -6,6 +6,10 @@ on:
         description: '3 letter Prefix'     
         required: true
         default: 'ABC'
+      logLevel:
+        description: 'Log level'     
+        required: false
+        default: 'warning'
 
 jobs:
   terraform:

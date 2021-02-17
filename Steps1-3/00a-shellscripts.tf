@@ -10,7 +10,7 @@ resource "shell_script" "download_asset" {
   working_directory = path.module
 
   environment = {
-    assets_url  = var.check_secret_scopes_url
-    debug_log       = true
+    assets_url = var.check_secret_scopes_url
+    debug_log  = true
   }
 }

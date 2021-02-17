@@ -2,18 +2,18 @@
 terraform {
   required_providers {
     azurerm = {
-      source = "hashicorp/azurerm"
+      source  = "hashicorp/azurerm"
       version = ">= 2.26"
     }
     azuread = {
-      source = "hashicorp/azuread"
+      source  = "hashicorp/azuread"
       version = ">= 1.3"
     }
     databricks = {
       source = "databrickslabs/databricks"
     }
     shell = {
-      source = "scottwinkler/shell"
+      source  = "scottwinkler/shell"
       version = "1.7.7"
     }
   }
@@ -35,25 +35,25 @@ variable "prefix" {
   default = "XYZ"
 }
 variable "vnet_name" {
-  type    = string  
+  type = string
 }
 variable "vnet_rg" {
-  type    = string  
+  type = string
 }
 variable "subnet_cidr_public" {
-  type    = string
+  type = string
 }
 variable "subnet_cidr_private" {
-  type    = string
+  type = string
 }
 variable "check_secret_scopes_url" {
   type = string
 }
 
 data "azurerm_resources" "vnet" {
-    type = "Microsoft.Network/virtualNetworks"
-    name = var.vnet_name
-    resource_group_name = var.vnet_rg
+  type                = "Microsoft.Network/virtualNetworks"
+  name                = var.vnet_name
+  resource_group_name = var.vnet_rg
 }
 
 resource "azurerm_resource_group" "rg" {
