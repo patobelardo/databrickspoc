@@ -9,6 +9,18 @@ on:
         description: '3 letter Prefix'     
         required: true
         default: 'ABC'
+      subnet_cidr_public:
+        description: 'Public Subnet CIDR'     
+        required: true
+        default: '10.0.3.192/26'
+      subnet_cidr_private:
+        description: 'Private Subnet CIDR'     
+        required: true
+        default: '10.0.4.0/26'
+      logLevel:
+        description: 'Log level'     
+        required: false
+        default: 'warning'
 
 jobs:
   terraform:
@@ -31,5 +43,5 @@ jobs:
         working-directory: Steps1-3
 
       - name: Terraform Apply
-        run: terraform apply -auto-approve
+        run: terraform apply -var prefix="${{ github.event.inputs.prefix }}" -var subnet_cidr_public="${{ github.event.inputs.subnet_cidr_public }}" -var subnet_cidr_private="${{ github.event.inputs.subnet_cidr_private }}" -auto-approve
         working-directory: Steps1-3
