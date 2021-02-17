@@ -32,5 +32,5 @@ jobs:
         working-directory: Steps1-3
 
       - name: Terraform Plan
-        run: terraform plan -var prefix="${{ inputs.prefix }}"
+        run: terraform plan -var prefix="${{ github.event.inputs.prefix }}"
         working-directory: Steps1-3
