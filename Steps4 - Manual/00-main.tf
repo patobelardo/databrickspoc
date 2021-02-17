@@ -24,26 +24,17 @@ variable "prefix" {
   type    = string
   default = "XYZ"
 }
-variable "vnet_name" {
-  type    = string  
-}
-variable "vnet_rg" {
-  type    = string  
-}
-variable "subnet_cidr_public" {
+
+variable "keyvault_id" {
   type    = string
-}
-variable "subnet_cidr_private" {
-  type    = string
-}
-variable "check_secret_scopes_url" {
-  type = string
 }
 
-data "azurerm_resources" "vnet" {
-    type = "Microsoft.Network/virtualNetworks"
-    name = var.vnet_name
-    resource_group_name = var.vnet_rg
+variable "keyvault_uri" {
+  type    = string
+}
+
+variable "dbricks_id" {
+  type = string
 }
 
 resource "random_password" "main" {
@@ -73,7 +64,6 @@ resource "local_file" "sp_secret" {
 }
 
 
-
 # App created as an Enterprise application, but not SCIM option yet
 # resource "azuread_application" "enterprise" {
 #   display_name = "${var.prefix}-Databricks-provisioning"
@@ -85,3 +75,17 @@ resource "local_file" "sp_secret" {
 #     "WindowsAzureActiveDirectoryIntegratedApp",
 #   ]
 # }
+
+provider "databricks" {
+  azure_workspace_resource_id = var.dbricks_id
+}
+
+#From 3d
+resource "databricks_secret_scope" "kv" {
+  name = "${var.prefix}-Secrets"
+
+  keyvault_metadata {
+    resource_id = var.keyvault_id
+    dns_name    = var.keyvault_uri
+  }
+}
