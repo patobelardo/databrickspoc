@@ -14,11 +14,13 @@ resource "azurerm_key_vault" "kv" {
   }
 }
 
-resource "databricks_secret_scope" "kv" {
-  name = "${var.prefix}-Secrets"
+# We need a manual procedure here
+# https://docs.microsoft.com/en-us/azure/databricks/security/secrets/secret-scopes#create-an-azure-key-vault-backed-secret-scope-using-the-databricks-cli
+# resource "databricks_secret_scope" "kv" {
+#   name = "${var.prefix}-Secrets"
 
-  keyvault_metadata {
-    resource_id = azurerm_key_vault.kv.id
-    dns_name    = azurerm_key_vault.kv.vault_uri
-  }
-}
+#   keyvault_metadata {
+#     resource_id = azurerm_key_vault.kv.id
+#     dns_name    = azurerm_key_vault.kv.vault_uri
+#   }
+# }

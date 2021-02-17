@@ -4,6 +4,8 @@
 - 00a- I’m downloading the file from an url in terraform. Maybe it’s better to have a “preparation task to do this”?
 - 00a- To import it using the terraform module, the scripts need to be .py (ipynb not supported yet)
 - 3a - We can save it locally or put it on a Key Vault.
+- 3d - follow the article [here](https://docs.microsoft.com/en-us/azure/databricks/security/secrets/secret-scopes#create-an-azure-key-vault-backed-secret-scope-using-the-databricks-cli), we need to move it to step #4 maybe?
+> I'm getting "Error: Azure KeyVault cannot yet be configured for Service Principal authorization" from the pipeline (with sp)
 - 4b - Waiting for configuration if can be automated entirely… 4c should be automated?
 - 4d - From what resource?
 - Intermediate step (prerequisite for  step 5+)
