@@ -50,15 +50,6 @@ variable "check_secret_scopes_url" {
   type = string
 }
 
-#UDR ObjectID
-variable "udr_id" {
-  type = string
-}
-
-variable "databricks_blobservice_fqdn" {
-  type = string
-}
-
 data "azurerm_resources" "vnet" {
     type = "Microsoft.Network/virtualNetworks"
     name = var.vnet_name
