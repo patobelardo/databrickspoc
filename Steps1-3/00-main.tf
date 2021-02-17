@@ -17,6 +17,12 @@ terraform {
       version = "1.7.7"
     }
   }
+  backend "azurerm" {
+    resource_group_name  = "databricks-tf"
+    storage_account_name = "sadatabrickstf"
+    container_name       = "terraform-state"
+    key                  = "terraform.tfstate"
+  }
 }
 provider "azurerm" {
   features {}
@@ -41,22 +47,6 @@ variable "subnet_cidr_private" {
   type    = string
 }
 variable "check_secret_scopes_url" {
-  type = string
-}
-variable "step4done" {
-  type = bool
-}
-variable "coviddata_admins_emails" {
-  type = list(string)
-}
-variable "firewall_name" {
-  type = string
-}
-variable "firewall_rg" {
-  type = string
-}
-
-variable "databricksappsecret" {
   type = string
 }
 

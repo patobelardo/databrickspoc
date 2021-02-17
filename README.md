@@ -11,7 +11,22 @@
     - Get Secret created from step 4 for XYZ-Secrets
     - databricks_blobservice_fqdn
     - change var step4done = true
+    - terraform import databricks_group.admin <id> (from the settings page)
+    - terraform import terraform import azurerm_firewall_application_rule_collection.rules /subscriptions/b464a5af-90a6-414d-b676-cd2f9fa3a5a4/resourceGroups/canadastats-common/providers/Microsoft.Network/azureFirewalls/azFirewallDAaaS/applicationRuleCollections/dbfs-blob-storages
 - 7 - Do we need to do exactly these steps or we need to give permissions to the AAD Group to the keyvault scope? 
 - 11- Firewall option will not work from terraform module to just add. We can:
     - use our own rule collection name
 	-  create an script using powershelgl
+
+
+## Steps for github action workflow creation
+### Creation of sp
+````bash
+az ad sp create-for-rbac --name "sp-databricks-poc-tf" --role Contributor --scopes /subscriptions/b464a5af-90a6-414d-b676-cd2f9fa3a5a4 --sdk-auth
+````
+### Terraform
+````bash
+az group create -g databricks-tf -l canadacentral
+az storage account create -n sadatabrickstf -g databricks-tf -l canadacentral --sku Standard_LRS
+az storage container create -n terraform-state --account-name sadatabrickstf
+````
