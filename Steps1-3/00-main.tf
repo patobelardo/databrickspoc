@@ -1,3 +1,7 @@
+variable "prefix" {
+  type    = string
+  default = "XYZ"
+}
 # Configure the Azure provider
 terraform {
   required_providers {
@@ -20,7 +24,7 @@ terraform {
   backend "azurerm" {
     resource_group_name  = "databricks-tf"
     storage_account_name = "sadatabrickstf"
-    container_name       = "terraform-state"
+    container_name       = "terraform-state${var.prefix}"
     key                  = "terraform.tfstate"
   }
 }
@@ -31,10 +35,7 @@ provider "azurerm" {
 
 data "azurerm_client_config" "current" {}
 
-variable "prefix" {
-  type    = string
-  default = "XYZ"
-}
+
 variable "vnet_name" {
   type = string
 }
