@@ -44,5 +44,5 @@ jobs:
         working-directory: Steps1-3
 
       - name: Terraform Apply
-        run: terraform apply -var prefix="${{ github.event.inputs.prefix }}" -var subnet_cidr_public="${{ github.event.inputs.subnet_cidr_public }}" -var subnet_cidr_private="${{ github.event.inputs.subnet_cidr_private }}" -auto-approve
+        run: terraform apply -var prefix="${{ github.event.inputs.prefix }}" -var client_id="${ARM_CLIENT_ID}" -var client_secret="${ARM_CLIENT_SECRET}" -var tenant_id="${ARM_TENANT_ID}" -var subnet_cidr_public="${{ github.event.inputs.subnet_cidr_public }}" -var subnet_cidr_private="${{ github.event.inputs.subnet_cidr_private }}" -auto-approve
         working-directory: Steps1-3
