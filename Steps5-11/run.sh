@@ -13,22 +13,22 @@ fi
 echo "Using prefix: $1"
 echo "App Secret: $2"
 
-az extension add --name databrick
+az extension add --name databricks
 
 coviddata_admins_emails=$(az ad group member list --group CovidData-admins --query '[].userPrincipalName' -o json | tr '\n' ' ') # | sed "s/\"/'/g")
 databricks_blobservice_fqdn=$(az databricks workspace show -n $1-Databricks -g CAE-Prod-$1 --query 'parameters.storageAccountName.value' | tr -d \") 
 databricksappsecret="$2"
 #TODO Get from Databricks CLI
-dbricks_cluster_new_id="0218-140041-earth432"
+dbricks_cluster_new_id="0218-182820-pit451"
 dbricks_id=$(az resource show -g CAE-Prod-$1 --resource-type Microsoft.Databricks/workspaces -n $1-Databricks  --query "id") # | tr -d \") 
 keyvault_id=$(az keyvault show -n $1-Secrets -g CAE-Prod-$1 --query 'id') # | tr -d \") 
 private_subnet_id=$(az network vnet subnet show -g canadastats-common --vnet-name COVID-IaaSVNet -n $1-dbricks-private --query "id") # | tr -d \")
 public_subnet_id=$(az network vnet subnet show -g canadastats-common --vnet-name COVID-IaaSVNet -n $1-dbricks-public --query "id") # | tr -d \")
 #TODO Get from Databricks CLI
-terraform import databricks_group.admin 5522837349509872
+terraform import databricks_group.admin 3394478871036467
 #TODO Get User Ids and group id, instead of importing
 #TODO Firewall priority increasing (if we will create dynamic rules)
-firewall_rule_priority=101
+firewall_rule_priority=103
 
 #echo "Admins : $coviddata_admins_emails"
 #echo "databricks_blobservice_fqdn: $databricks_blobservice_fqdn"
