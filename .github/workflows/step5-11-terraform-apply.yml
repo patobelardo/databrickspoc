@@ -1,4 +1,4 @@
-name: Steps 4-11 - Terraform Plan
+name: Steps 5-11 - Terraform Plan
 on:
   workflow_dispatch:
     inputs:
