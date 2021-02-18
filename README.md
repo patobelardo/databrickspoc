@@ -32,3 +32,25 @@ az group create -g databricks-tf -l canadacentral
 az storage account create -n sadatabrickstf -g databricks-tf -l canadacentral --sku Standard_LRS
 az storage container create -n terraform-state --account-name sadatabrickstf
 ````
+
+
+## Execution
+- 1st Pipeline
+- run.sh script from Steps4-Manual folder
+Output Example:
+````bash
+Apply complete! Resources: 0 added, 0 changed, 0 destroyed.
+Please create:
+ - Enterprise Application from Catalog (Databricks)
+ - Name: BBD-Databricks-provisioning
+ - Add User and Groups: BBD, Covid-Admin
+ - Go to Provisioning:
+     - Privisioning Mode: Automatic
+     - Tenant URL: https://adb-5679927609571559.19.azuredatabricks.net/api/2.0/preview/scim
+     - Token     : check email
+     - Test Connection & Save
+     - Start Provisioning
+ - Share this secret with the provisioning team (databricksappsecret):
+2qkQ8PJfVkjYemm4g2oINlv0501KnjJi
+Done.
+````

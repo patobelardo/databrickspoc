@@ -1,4 +1,4 @@
-name: Terraform Plan
+name: Steps 4-11 - Terraform Plan
 on:
   workflow_dispatch:
     inputs:
@@ -30,12 +30,12 @@ jobs:
 
       - name: Terraform Init
         run: terraform init
-        working-directory: Steps1-3
+        working-directory: Steps5-11
 
       - name: Terraform Format
         run: terraform fmt -check
-        working-directory: Steps1-3
+        working-directory: Steps5-11
 
       - name: Terraform Plan
         run: terraform plan -var prefix="${{ github.event.inputs.prefix }}"
-        working-directory: Steps1-3
+        working-directory: Steps5-11

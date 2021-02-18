@@ -20,8 +20,8 @@ terraform {
   backend "azurerm" {
     resource_group_name  = "databricks-tf"
     storage_account_name = "sadatabrickstf"
-    container_name       = "terraform-state"
-    key                  = "terraform.tfstate"
+    container_name       = "terraform-state1"
+    key                  = "terraform.tfstate1"
   }
 }
 provider "azurerm" {
@@ -34,24 +34,6 @@ variable "prefix" {
   type    = string
   default = "XYZ"
 }
-variable "vnet_name" {
-  type    = string  
-}
-variable "vnet_rg" {
-  type    = string  
-}
-variable "subnet_cidr_public" {
-  type    = string
-}
-variable "subnet_cidr_private" {
-  type    = string
-}
-variable "check_secret_scopes_url" {
-  type = string
-}
-variable "step4done" {
-  type = bool
-}
 variable "coviddata_admins_emails" {
   type = list(string)
 }
@@ -59,6 +41,12 @@ variable "firewall_name" {
   type = string
 }
 variable "firewall_rg" {
+  type = string
+}
+variable "dbricks_id" {
+  type = string
+}
+variable "keyvault_id" {
   type = string
 }
 
@@ -75,13 +63,22 @@ variable "databricks_blobservice_fqdn" {
   type = string
 }
 
-data "azurerm_resources" "vnet" {
-    type = "Microsoft.Network/virtualNetworks"
-    name = var.vnet_name
-    resource_group_name = var.vnet_rg
+variable "public_subnet_id" {
+  type = string
 }
 
-resource "azurerm_resource_group" "rg" {
-  name     = "CAE-Prod-${var.prefix}"
-  location = "canadacentral"
+variable "private_subnet_id" {
+  type = string
+}
+
+variable "dbricks_cluster_new_id" {
+  type = string
+}
+
+variable "firewall_rule_priority" {
+  type = number
+}
+
+provider "databricks" {
+  azure_workspace_resource_id = var.dbricks_id
 }

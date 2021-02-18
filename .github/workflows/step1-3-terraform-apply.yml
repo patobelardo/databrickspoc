@@ -1,0 +1,48 @@
+name: Steps 1-3 - Terraform Apply
+
+on:
+  # push:
+  #   branches: [ master ]
+  workflow_dispatch:
+    inputs:
+      prefix:
+        description: '3 letter Prefix'     
+        required: true
+        default: 'ABC'
+      subnet_cidr_public:
+        description: 'Public Subnet CIDR'     
+        required: true
+        default: '10.0.3.192/26'
+      subnet_cidr_private:
+        description: 'Private Subnet CIDR'     
+        required: true
+        default: '10.0.4.0/26'
+      logLevel:
+        description: 'Log level'     
+        required: false
+        default: 'warning'
+
+jobs:
+  terraform:
+    runs-on: self-hosted
+    # runs-on: ubuntu-latest
+
+    env:
+      ARM_CLIENT_ID: 6fb69fe3-eba6-4e96-9546-b6399a1a0af5
+      ARM_CLIENT_SECRET: ${{secrets.TF_ARM_CLIENT_SECRET}}
+      ARM_SUBSCRIPTION_ID: b464a5af-90a6-414d-b676-cd2f9fa3a5a4
+      ARM_TENANT_ID: 05fc097a-05d5-48a8-8ad7-44221fa2d524
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Setup Terraform
+        uses: hashicorp/setup-terraform@v1
+
+      - name: Terraform Init
+        run: terraform init
+        working-directory: Steps1-3
+
+      - name: Terraform Apply
+        run: terraform apply -var prefix="${{ github.event.inputs.prefix }}" -var subnet_cidr_public="${{ github.event.inputs.subnet_cidr_public }}" -var subnet_cidr_private="${{ github.event.inputs.subnet_cidr_private }}" -auto-approve
+        working-directory: Steps1-3

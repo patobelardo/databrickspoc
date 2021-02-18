@@ -1,0 +1,28 @@
+**********************
+PowerShell transcript start
+Start time: 20210218090038
+Username: Patricios-Mini\pato
+RunAs User: Patricios-Mini\pato
+Configuration Name: 
+Machine: Patricios-Mini (Unix 11.0.0)
+Host Application: /usr/local/microsoft/powershell/7/pwsh.dll ./scripts/getassets.ps1 -type create
+Process ID: 2257
+PSVersion: 7.1.1
+PSEdition: Core
+GitCommitId: 7.1.1
+OS: Darwin 20.3.0 Darwin Kernel Version 20.3.0: Thu Jan 21 00:07:06 PST 2021; root:xnu-7195.81.3~1/RELEASE_X86_64
+Platform: Unix
+PSCompatibleVersions: 1.0, 2.0, 3.0, 4.0, 5.0, 5.1.10032.0, 6.0.0, 6.1.0, 6.2.0, 7.0.0, 7.1.1
+PSRemotingProtocolVersion: 2.3
+SerializationVersion: 1.1.0.1
+WSManStackVersion: 3.0
+**********************
+Transcript started, output file is ./getassets.create.log
+Starting create
+Done
+PS>$global:?
+True
+**********************
+PowerShell transcript end
+End time: 20210218090043
+**********************

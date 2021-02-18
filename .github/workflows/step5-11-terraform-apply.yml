@@ -1,22 +1,14 @@
-name: Terraform Apply
-
+name: Steps 4-11 - Terraform Plan
 on:
-  # push:
-  #   branches: [ master ]
   workflow_dispatch:
     inputs:
       prefix:
         description: '3 letter Prefix'     
         required: true
         default: 'ABC'
-      subnet_cidr_public:
-        description: 'Public Subnet CIDR'     
+      databricksappsecret:
+        description: 'App Secret of Application [prefix]-dbricks-sp'
         required: true
-        default: '10.0.3.192/26'
-      subnet_cidr_private:
-        description: 'Private Subnet CIDR'     
-        required: true
-        default: '10.0.4.0/26'
       logLevel:
         description: 'Log level'     
         required: false
@@ -41,8 +33,12 @@ jobs:
 
       - name: Terraform Init
         run: terraform init
-        working-directory: Steps1-3
+        working-directory: Steps5-11
 
-      - name: Terraform Apply
-        run: terraform apply -var prefix="${{ github.event.inputs.prefix }}" -var subnet_cidr_public="${{ github.event.inputs.subnet_cidr_public }}" -var subnet_cidr_private="${{ github.event.inputs.subnet_cidr_private }}" -auto-approve
-        working-directory: Steps1-3
+      - name: Terraform Format
+        run: terraform fmt -check
+        working-directory: Steps5-11
+
+      - name: Terraform Plan
+        run: terraform apply -var prefix="${{ github.event.inputs.prefix }}" -var databricksappsecret="${{ github.event.inputs.databricksappsecret }}" -auto-approve
+        working-directory: Steps5-11

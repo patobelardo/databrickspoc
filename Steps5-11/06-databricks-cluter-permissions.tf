@@ -1,7 +1,6 @@
 #Step 6
 resource "databricks_permissions" "cluster_usage" {
-  cluster_id = databricks_cluster.new.id
-  count =  var.step4done ? 1 : 0
+  cluster_id = var.dbricks_cluster_new_id
   
   access_control {
     group_name = var.prefix

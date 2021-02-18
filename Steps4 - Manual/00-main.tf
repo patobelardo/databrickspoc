@@ -63,6 +63,10 @@ resource "local_file" "sp_secret" {
     filename = "sp_secret.txt"
 }
 
+# Coming from Step 4
+resource "azuread_group" "group" {
+  display_name = var.prefix
+}
 
 # App created as an Enterprise application, but not SCIM option yet
 # resource "azuread_application" "enterprise" {

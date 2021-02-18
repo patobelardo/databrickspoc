@@ -1,11 +1,10 @@
 # Step 11
 #IMPORTANT: This will remove other rules... will not work adding just this. It's an option to have a different rule name?
 resource "azurerm_firewall_application_rule_collection" "rules" {
-  count =  var.step4done ? 1 : 0
-  name = "dbfs-blob-storages"
+  name = "dbfs-blob-storages-${var.prefix}"
   azure_firewall_name = var.firewall_name
   resource_group_name = var.firewall_rg
-  priority = 100  
+  priority = var.firewall_rule_priority  
   action = "Allow"
 
   rule {
