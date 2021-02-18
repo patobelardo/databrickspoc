@@ -37,5 +37,5 @@ jobs:
         working-directory: Steps1-3
 
       - name: Terraform Plan
-        run: terraform plan -var prefix="${{ github.event.inputs.prefix }}" -client_id="${ARM_CLIENT_ID}" -client_secret="${ARM_CLIENT_SECRET}" -tenant_id="${ARM_TENANT_ID}"
+        run: terraform plan -var prefix="${{ github.event.inputs.prefix }}" -client_id="6fb69fe3-eba6-4e96-9546-b6399a1a0af5" -client_secret="${{secrets.TF_ARM_CLIENT_SECRET}}" -tenant_id="05fc097a-05d5-48a8-8ad7-44221fa2d524"
         working-directory: Steps1-3
