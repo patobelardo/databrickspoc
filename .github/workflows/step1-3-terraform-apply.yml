@@ -24,8 +24,8 @@ on:
 
 jobs:
   terraform:
-    runs-on: self-hosted
-    # runs-on: ubuntu-latest
+    #runs-on: self-hosted
+    runs-on: ubuntu-latest
 
     env:
       ARM_CLIENT_ID: 6fb69fe3-eba6-4e96-9546-b6399a1a0af5
