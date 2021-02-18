@@ -51,6 +51,13 @@ variable "check_secret_scopes_url" {
   type = string
 }
 
+variable "client_id" {
+}
+variable "client_secret" {
+}
+variable "tenant_id" {
+}
+
 data "azurerm_resources" "vnet" {
   type                = "Microsoft.Network/virtualNetworks"
   name                = var.vnet_name
