@@ -58,6 +58,12 @@ resource "azuread_service_principal_password" "pass" {
   end_date_relative = "2400h30m"
 }
 
+resource "azurerm_key_vault_secret" "token" {
+  key_vault_id = var.keyvault_id
+  name         = "DatabricksAppToken"
+  value        = random_password.main.result
+}
+
 resource "local_file" "sp_secret" {
     content  = random_password.main.result
     filename = "sp_secret.txt"

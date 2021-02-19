@@ -34,7 +34,7 @@ variable "prefix" {
   type    = string
   default = "XYZ"
 }
-variable "coviddata_admins_emails" {
+variable "coviddata_admins_ids" {
   type = list(string)
 }
 variable "firewall_name" {
@@ -53,7 +53,9 @@ variable "keyvault_id" {
 variable "databricksappsecret" {
   type = string
 }
-
+variable "databricks_admin_group_id" {
+  type = string
+}
 #UDR ObjectID
 variable "udr_id" {
   type = string
@@ -73,10 +75,6 @@ variable "private_subnet_id" {
 
 variable "dbricks_cluster_new_id" {
   type = string
-}
-
-variable "firewall_rule_priority" {
-  type = number
 }
 
 provider "databricks" {

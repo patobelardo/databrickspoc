@@ -1,12 +1,12 @@
 **********************
 PowerShell transcript start
-Start time: 20210218090038
+Start time: 20210219175104
 Username: Patricios-Mini\pato
 RunAs User: Patricios-Mini\pato
 Configuration Name: 
 Machine: Patricios-Mini (Unix 11.0.0)
 Host Application: /usr/local/microsoft/powershell/7/pwsh.dll ./scripts/getassets.ps1 -type create
-Process ID: 2257
+Process ID: 32484
 PSVersion: 7.1.1
 PSEdition: Core
 GitCommitId: 7.1.1
@@ -24,5 +24,5 @@ PS>$global:?
 True
 **********************
 PowerShell transcript end
-End time: 20210218090043
+End time: 20210219175108
 **********************
