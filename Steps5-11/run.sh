@@ -14,7 +14,8 @@ echo "Using prefix: $1"
 echo "App Secret: $2"
 
 az extension add --name databricks
-
+export DATABRICKS_HOST=asd
+export DATABRICKS_TOKEN=asd
 coviddata_admins_emails=$(az ad group member list --group CovidData-admins --query '[].userPrincipalName' -o json | tr '\n' ' ') # | sed "s/\"/'/g")
 databricks_blobservice_fqdn=$(az databricks workspace show -n $1-Databricks -g CAE-Prod-$1 --query 'parameters.storageAccountName.value' | tr -d \") 
 databricksappsecret="$2"
