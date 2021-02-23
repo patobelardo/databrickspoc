@@ -7,6 +7,10 @@ PARAM(
 # databricks cli
 # azure cli
 
+$firewall_name="azFirewallDAaaS"
+$firewall_rg="canadastats-common"
+$firewall_rule_name="dbfs-blob-storages"
+
 Write-Host "Using prefix: $prefix"
 
 az extension add --name databricks | Out-Null
@@ -37,9 +41,6 @@ $private_subnet_id=(az network vnet subnet show -g canadastats-common --vnet-nam
 $public_subnet_id=(az network vnet subnet show -g canadastats-common --vnet-name COVID-IaaSVNet -n $prefix-dbricks-public --query "id") # | tr -d \")
 
 
-$firewall_name="azFirewallDAaaS"
-$firewall_rg="canadastats-common"
-$firewall_rule_name="dbfs-blob-storages"
 Copy-Item terraform.tfvars.original terraform.tfvars
 "databricks_admin_group_id=$databricks_admin_group_id" >> terraform.tfvars
 "coviddata_admins_ids=[$coviddata_admins_ids]" >> terraform.tfvars
