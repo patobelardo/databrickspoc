@@ -59,7 +59,7 @@ $env:DATABRICKS_HOST=$null
 $env:DATABRICKS_TOKEN=$null
 
 #$env:TF_LOG="DEBUG"
-terraform plan -var prefix="$prefix" 
+#terraform plan -var prefix="$prefix" 
 
-terraform apply -var prefix="$prefix" --auto-approve
+#terraform apply -var prefix="$prefix" --auto-approve
 

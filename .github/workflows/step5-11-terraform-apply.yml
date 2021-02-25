@@ -6,9 +6,6 @@ on:
         description: '3 letter Prefix'     
         required: true
         default: 'ABC'
-      databricksappsecret:
-        description: 'App Secret of Application [prefix]-dbricks-sp'
-        required: true
       logLevel:
         description: 'Log level'     
         required: false
@@ -17,7 +14,6 @@ on:
 jobs:
   terraform:
     runs-on: self-hosted
-    # runs-on: ubuntu-latest
 
     env:
       ARM_CLIENT_ID: 6fb69fe3-eba6-4e96-9546-b6399a1a0af5
@@ -39,6 +35,14 @@ jobs:
         run: terraform fmt -check
         working-directory: Steps5-11
 
+      - name: Run Script
+        run: pwsh ./run.ps1
+        working-directory: Steps5-11
+
       - name: Terraform Plan
-        run: terraform apply -var prefix="${{ github.event.inputs.prefix }}" -var databricksappsecret="${{ github.event.inputs.databricksappsecret }}" -auto-approve
+        run: terraform plan -var prefix="${{ github.event.inputs.prefix }}" 
+        working-directory: Steps5-11
+
+      - name: Terraform Apply
+        run: terraform apply -var prefix="${{ github.event.inputs.prefix }}" -auto-approve
         working-directory: Steps5-11
